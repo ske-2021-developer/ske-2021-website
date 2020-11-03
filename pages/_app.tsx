@@ -1,15 +1,17 @@
 import { RecoilRoot } from 'recoil'
 
-import AppThemeProvider from '@components/AppThemeProvider'
+import AppRoot from '@components/AppRoot'
 import GlobalStyle from '@styles/globals'
+
+import '@styles/globalStyle.css'
 
 function MyApp({ Component, pageProps }) {
 	return (
 		<RecoilRoot>
-			<AppThemeProvider>
+			<AppRoot>
 				<GlobalStyle />
 				<Component {...pageProps} />
-			</AppThemeProvider>
+			</AppRoot>
 		</RecoilRoot>
 	)
 }

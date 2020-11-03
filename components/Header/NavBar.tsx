@@ -13,8 +13,7 @@ interface NavBarLinkProps {
 }
 
 const NavBarContainer = styled.nav`
-	display: flex;
-	flex: 1 1;
+	justify-content: center;
 `
 
 const LinkContainer = styled.div`

@@ -17,6 +17,11 @@ const HeaderContainer = styled.div`
 	align-items: center;
 	width: 1048px;
 	margin: auto;
+
+	& > * {
+		display: flex;
+		flex: 1 1;
+	}
 `
 
 type HeaderProps = {}

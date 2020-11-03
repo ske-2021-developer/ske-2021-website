@@ -1,10 +1,5 @@
 import type { DefaultTheme } from 'styled-components'
-
-interface CommonTheme {
-	colorBlack: string
-	colorWhite: string
-	fontSize: string
-}
+import type { CommonTheme } from './styled'
 
 const commonTheme: CommonTheme = {
 	colorBlack: 'rgb(0, 0, 0)',
@@ -12,7 +7,7 @@ const commonTheme: CommonTheme = {
 	fontSize: '1rem'
 }
 
-const darkTheme: DefaultTheme & CommonTheme = {
+const darkTheme: DefaultTheme = {
 	...commonTheme,
 	backgroundColor: 'rgb(0, 0, 0)',
 	color: 'rgb(255, 255, 255)',
@@ -20,7 +15,7 @@ const darkTheme: DefaultTheme & CommonTheme = {
 	colorMedium: 'rgb(136, 136, 136)'
 }
 
-const lightTheme: DefaultTheme & CommonTheme = {
+const lightTheme: DefaultTheme = {
 	...commonTheme,
 	backgroundColor: 'rgb(255, 255, 255)',
 	color: 'rgb(0, 0, 0)',
