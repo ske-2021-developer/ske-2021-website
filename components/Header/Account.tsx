@@ -1,11 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { parseCookies } from 'nookies'
 import styled from 'styled-components'
 
 import { useUser } from '@states/user-state'
-
-import type { GetServerSideProps } from 'next'
 
 const AccountContainer = styled.div`
 	padding-right: 2rem;
@@ -38,11 +35,29 @@ type AccountProps = {
 }
 
 const Account = ({ isAuth }: AccountProps) => {
+	// const [isUserTimeout, setIsUserTimeout] = useState<number>(null)
+
 	const [user] = useUser()
+
+	// useEffect(() => {
+	// 	if (user === null) {
+	// 		if (isUserTimeout === null) {
+	// 			const timeout = window.setTimeout(() => {
+
+	// 			}, [])
+
+	// 			setIsUserTimeout(timeout)
+	// 		} else {
+
+	// 		}
+	// 	} else {
+
+	// 	}
+	// }, [user])
 
 	return (
 		<AccountContainer>
-			{isAuth ? (
+			{isAuth && user !== null ? (
 				<Link href='/user'>
 					<UserPhoto src={user.photoURL} alt='user-photo-url' />
 				</Link>

@@ -1,15 +1,30 @@
+import { parseCookies } from 'nookies'
+
 import PageLayout from '@components/PageLayout'
 import GoogleAuth from '@components/Auth/GoogleAuth'
 
-type SignUpPageProps = {}
+import type { GetServerSideProps } from 'next'
 
-const SignUpPage = ({}: SignUpPageProps) => {
+type SignUpPageProps = {
+	isAuth: boolean
+}
+
+const SignUpPage = ({ isAuth }: SignUpPageProps) => {
 	return (
-		<PageLayout title='Sign Up'>
+		<PageLayout isAuth={isAuth} title='Sign Up'>
 			<h1>Sign Up</h1>
 			<GoogleAuth />
 		</PageLayout>
 	)
+}
+
+export const getServerSideProps: GetServerSideProps = async context => {
+	const { 'ske-auth-token': token } = parseCookies(context)
+	const isAuth = !!token
+
+	return {
+		props: { isAuth }
+	}
 }
 
 export default SignUpPage

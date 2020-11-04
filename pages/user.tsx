@@ -52,8 +52,8 @@ const UserPage = ({ isAuth }: UserPageProps) => {
 	const [user] = useUser()
 
 	return (
-		<PageLayout title='User'>
-			{isAuth && (
+		<PageLayout isAuth={isAuth} title='User'>
+			{isAuth && user !== null && (
 				<>
 					<UserContainer>
 						<UserPhoto src={user.photoURL} alt='user-photo-url' />
