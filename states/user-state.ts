@@ -16,7 +16,7 @@ const userAtom = atom<User | null>({
 function useUser() {
 	const [user, setUser] = useRecoilState(userAtom)
 
-	return { user, setUser }
+	return [user, setUser] as const
 }
 
 export { useUser }

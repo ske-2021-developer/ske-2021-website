@@ -24,15 +24,17 @@ const HeaderContainer = styled.div`
 	}
 `
 
-type HeaderProps = {}
+type HeaderProps = {
+	isAuth: boolean
+}
 
-const Header = ({}: HeaderProps) => {
+const Header = ({ isAuth }: HeaderProps) => {
 	return (
 		<HeaderWrapper>
 			<HeaderContainer>
 				<Logo />
 				<NavBar />
-				<Account />
+				<Account isAuth={isAuth} />
 			</HeaderContainer>
 		</HeaderWrapper>
 	)

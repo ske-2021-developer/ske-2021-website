@@ -9,10 +9,11 @@ const PageMain = styled.main``
 
 type PageLayoutProps = {
 	children: ReactNode
+	isAuth: boolean
 	title: string
 }
 
-const PageLayout = ({ children, title }: PageLayoutProps) => {
+const PageLayout = ({ children, isAuth, title }: PageLayoutProps) => {
 	return (
 		<>
 			<Head>
@@ -20,7 +21,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
 				<meta charSet='utf-8' />
 				<meta name='viewport' content='initial-scale=1.0, width=device-width' />
 			</Head>
-			<Header />
+			<Header isAuth={isAuth} />
 			<PageMain>{children}</PageMain>
 		</>
 	)

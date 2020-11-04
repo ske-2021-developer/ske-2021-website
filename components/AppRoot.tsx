@@ -20,7 +20,7 @@ type AppRootProps = {
 
 const AppRoot = ({ children }: AppRootProps) => {
 	const { theme } = useTheme()
-	const { setUser } = useUser()
+	const [, setUser] = useUser()
 
 	useEffect(() => {
 		firebase.auth().onIdTokenChanged(async user => {

@@ -1,8 +1,11 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
+import { parseCookies } from 'nookies'
 import styled from 'styled-components'
 
 import { useUser } from '@states/user-state'
+
+import type { GetServerSideProps } from 'next'
 
 const AccountContainer = styled.div`
 	padding-right: 2rem;
@@ -30,24 +33,22 @@ const UserPhoto = styled.img`
 	cursor: pointer;
 `
 
-type AccountProps = {}
+type AccountProps = {
+	isAuth: boolean
+}
 
-const Account = ({}: AccountProps) => {
-	const { user } = useUser()
-
-	useEffect(() => {
-		console.log(user)
-	}, [user])
+const Account = ({ isAuth }: AccountProps) => {
+	const [user] = useUser()
 
 	return (
 		<AccountContainer>
-			{user === null ? (
-				<Link href='/signup'>
-					<SignUpLink>Sign Up</SignUpLink>
-				</Link>
-			) : (
+			{isAuth ? (
 				<Link href='/user'>
 					<UserPhoto src={user.photoURL} alt='user-photo-url' />
+				</Link>
+			) : (
+				<Link href='/signup'>
+					<SignUpLink>Sign Up</SignUpLink>
 				</Link>
 			)}
 		</AccountContainer>
