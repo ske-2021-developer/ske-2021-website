@@ -1,10 +1,9 @@
-import { useRouter, NextRouter } from 'next/router'
 import { useEffect } from 'react'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
-const uiConfig: (router: NextRouter) => firebaseui.auth.Config = router => ({
+const uiConfig = {
 	signInFlow: 'popup',
 	signInOptions: [
 		{
@@ -17,29 +16,19 @@ const uiConfig: (router: NextRouter) => firebaseui.auth.Config = router => ({
 	],
 	callbacks: {
 		signInSuccessWithAuthResult() {
-			console.log('success 1')
-
-			router.push('/user')
-
-			console.log('success 2')
-
-			return true
+			return false
 		}
 	}
-})
+}
 
 type GoogleAuthProps = {}
 
 const GoogleAuth = ({}: GoogleAuthProps) => {
-	const router = useRouter()
-
 	useEffect(() => {
-		router.prefetch('/user')
-
 		firebase.auth().useDeviceLanguage()
 	}, [])
 
-	return <StyledFirebaseAuth uiConfig={uiConfig(router)} firebaseAuth={firebase.auth()} />
+	return <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
 }
 
 export default GoogleAuth

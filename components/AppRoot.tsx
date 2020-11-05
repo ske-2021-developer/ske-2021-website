@@ -7,11 +7,10 @@ import { ThemeProvider } from 'styled-components'
 import firebaseClient from '@src/firebaseClient'
 import { getUserData } from '@src/firebaseFirestore'
 import { useTheme } from '@states/theme-state'
-import { useUser } from '@states/user-state'
+import { useIsGettingUser, useUser } from '@states/user-state'
 
 const cookieConfig = {
-	maxAge: 30 * 24 * 60 * 60,
-	path: '/'
+	maxAge: 30 * 24 * 60 * 60
 }
 
 type AppRootProps = {
@@ -19,10 +18,13 @@ type AppRootProps = {
 }
 
 const AppRoot = ({ children }: AppRootProps) => {
+	const [, setIsGettingUser] = useIsGettingUser()
 	const { theme } = useTheme()
 	const [, setUser] = useUser()
 
 	useEffect(() => {
+		setIsGettingUser(true)
+
 		firebase.auth().onIdTokenChanged(async user => {
 			if (user === null) {
 				setUser(null)
@@ -48,6 +50,8 @@ const AppRoot = ({ children }: AppRootProps) => {
 
 				setCookie(undefined, 'ske-auth-token', token, cookieConfig)
 			}
+
+			setIsGettingUser(false)
 		})
 	}, [])
 

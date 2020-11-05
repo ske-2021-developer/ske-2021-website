@@ -8,15 +8,26 @@ interface User {
 	ticketId: string
 }
 
+const isGettingUserAtom = atom<boolean>({
+	key: 'isGettingUserAtom',
+	default: true
+})
+
 const userAtom = atom<User | null>({
-	key: 'userUidAtom',
+	key: 'userAtom',
 	default: null
 })
 
-function useUser() {
-	const [user, setUser] = useRecoilState(userAtom)
+function useIsGettingUser() {
+	const [get, set] = useRecoilState(isGettingUserAtom)
 
-	return [user, setUser] as const
+	return [get, set] as const
 }
 
-export { useUser }
+function useUser() {
+	const [get, set] = useRecoilState(userAtom)
+
+	return [get, set] as const
+}
+
+export { useIsGettingUser, useUser }

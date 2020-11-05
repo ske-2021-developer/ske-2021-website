@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 
-import { useUser } from '@states/user-state'
+import { useIsGettingUser, useUser } from '@states/user-state'
 
 const AccountContainer = styled.div`
 	padding-right: 2rem;
@@ -35,36 +34,23 @@ type AccountProps = {
 }
 
 const Account = ({ isAuth }: AccountProps) => {
-	// const [isUserTimeout, setIsUserTimeout] = useState<number>(null)
-
+	const [isGettingUser] = useIsGettingUser()
 	const [user] = useUser()
-
-	// useEffect(() => {
-	// 	if (user === null) {
-	// 		if (isUserTimeout === null) {
-	// 			const timeout = window.setTimeout(() => {
-
-	// 			}, [])
-
-	// 			setIsUserTimeout(timeout)
-	// 		} else {
-
-	// 		}
-	// 	} else {
-
-	// 	}
-	// }, [user])
 
 	return (
 		<AccountContainer>
-			{isAuth && user !== null ? (
-				<Link href='/user'>
-					<UserPhoto src={user.photoURL} alt='user-photo-url' />
-				</Link>
-			) : (
-				<Link href='/signup'>
-					<SignUpLink>Sign Up</SignUpLink>
-				</Link>
+			{!isGettingUser && (
+				<>
+					{isAuth && user !== null ? (
+						<Link href='/user'>
+							<UserPhoto src={user.photoURL} alt='user-photo-url' />
+						</Link>
+					) : (
+						<Link href='/signup'>
+							<SignUpLink>Sign Up</SignUpLink>
+						</Link>
+					)}
+				</>
 			)}
 		</AccountContainer>
 	)
