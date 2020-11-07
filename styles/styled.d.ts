@@ -2,6 +2,7 @@ import 'styled-components'
 
 declare interface CommonTheme {
 	colorBlack: string
+	colorRed: string
 	colorWhite: string
 	fontSize: string
 }

@@ -21,6 +21,7 @@ async function handleSignOut(router: NextRouter) {
 
 const UserContainer = styled.div`
 	display: flex;
+	padding-top: 2rem;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
@@ -34,13 +35,27 @@ const UserPhoto = styled.img`
 
 const UserName = styled.h1`
 	color: ${({ theme: { color } }) => color};
+	text-align: center;
 `
 
 const UserEmail = styled.h3`
 	color: ${({ theme: { colorMedium } }) => colorMedium};
+	text-align: center;
 `
 
-const SignOutButton = styled.button``
+const SignOutButton = styled.button`
+	background-color: ${({ theme: { colorRed } }) => colorRed};
+	color: ${({ theme: { colorWhite } }) => colorWhite};
+	cursor: pointer;
+	border: 0.125rem solid ${({ theme: { colorRed } }) => colorRed};
+	border-radius: 0.5rem;
+	padding: 0.625rem 1rem;
+
+	&:hover {
+		background-color: ${({ theme: { colorWhite } }) => colorWhite};
+		color: ${({ theme: { colorRed } }) => colorRed};
+	}
+`
 
 type UserPageProps = {
 	isAuth: boolean
@@ -59,8 +74,8 @@ const UserPage = ({ isAuth }: UserPageProps) => {
 						<UserPhoto src={user.photoURL} alt='user-photo-url' />
 						<UserName>{user.displayName}</UserName>
 						<UserEmail>{user.email}</UserEmail>
+						<SignOutButton onClick={() => handleSignOut(router)}>Sign Out</SignOutButton>
 					</UserContainer>
-					<SignOutButton onClick={() => handleSignOut(router)}>Sign Out</SignOutButton>
 				</>
 			)}
 		</PageLayout>

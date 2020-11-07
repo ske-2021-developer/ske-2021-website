@@ -3,6 +3,7 @@ import type { CommonTheme } from './styled'
 
 const commonTheme: CommonTheme = {
 	colorBlack: 'rgb(0, 0, 0)',
+	colorRed: 'rgb(198, 40, 40)',
 	colorWhite: 'rgb(255, 255, 255)',
 	fontSize: '1rem'
 }
