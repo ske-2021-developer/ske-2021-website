@@ -1,10 +1,13 @@
-import admin, { ServiceAccount } from 'firebase-admin'
-import serviceAccount from 'firebase-admin-service-account.json'
+import admin from 'firebase-admin'
 
 const verifyIdToken = (token: string) => {
 	if (admin.apps.length === 0) {
 		admin.initializeApp({
-			credential: admin.credential.cert(serviceAccount as ServiceAccount),
+			credential: admin.credential.cert({
+				clientEmail: process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
+				privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY,
+				projectId: process.env.FIREBASE_ADMIN_PROJECT_ID
+			}),
 			databaseURL: process.env.FIREBASE_DATABASE_URL
 		})
 	}
