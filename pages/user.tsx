@@ -91,8 +91,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
 			props: { isAuth: true }
 		}
 	} catch (error) {
-		context.res.writeHead(302, { Location: '/signup' })
-		context.res.end()
+		console.error(error)
+
+		// context.res.writeHead(302, { Location: '/signup' })
+		// context.res.end()
 
 		return { props: { isAuth: false } }
 	}
