@@ -8,7 +8,7 @@ const verifyIdToken = (token: string) => {
 				privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY,
 				projectId: process.env.FIREBASE_ADMIN_PROJECT_ID
 			}),
-			databaseURL: process.env.FIREBASE_DATABASE_URL
+			databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL
 		})
 	}
 
