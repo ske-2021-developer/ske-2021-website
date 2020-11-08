@@ -33,8 +33,8 @@ const AppRoot = ({ children }: AppRootProps) => {
 			} else {
 				const { displayName, email, photoURL, uid } = user
 
-				const userData = await getUserData(uid)
-				console.log(userData)
+				// const userData = await getUserData(uid)
+				// console.log(userData)
 
 				const token = await user.getIdToken()
 
