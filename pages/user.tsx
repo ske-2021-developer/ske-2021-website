@@ -59,9 +59,10 @@ const SignOutButton = styled.button`
 
 type UserPageProps = {
 	isAuth: boolean
+	error?: unknown
 }
 
-const UserPage = ({ isAuth }: UserPageProps) => {
+const UserPage = ({ isAuth, error }: UserPageProps) => {
 	const router = useRouter()
 
 	const [user] = useUser()
@@ -78,6 +79,7 @@ const UserPage = ({ isAuth }: UserPageProps) => {
 					</UserContainer>
 				</>
 			)}
+			{error}
 		</PageLayout>
 	)
 }
@@ -96,7 +98,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
 		// context.res.writeHead(302, { Location: '/signup' })
 		// context.res.end()
 
-		return { props: { isAuth: false } }
+		return { props: { isAuth: false, error } }
 	}
 }
 
