@@ -1,0 +1,13 @@
+{
+	"version": 2,
+	"rewrites": [
+		{
+			"source": "/",
+			"destination": "/src/next"
+		},
+		{
+			"source": "/(.*)",
+			"destination": "/src/next/$1"
+		}
+	]
+}
