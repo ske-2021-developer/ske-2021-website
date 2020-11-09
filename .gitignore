@@ -35,4 +35,5 @@ yarn-error.log*
 .vercel
 
 # firebase
-firebase-admin-service-account.json
+.firebaserc
+firebase-service-account.json

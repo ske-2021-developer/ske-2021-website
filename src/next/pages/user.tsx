@@ -4,7 +4,7 @@ import { parseCookies } from 'nookies'
 import styled from 'styled-components'
 
 import PageLayout from '@components/PageLayout'
-import { verifyIdToken } from '@src/firebaseAdmin'
+import { verifyIdToken } from '@firebases/firebaseAdmin'
 import { useUser } from '@states/user-state'
 
 import type { GetServerSideProps } from 'next'
@@ -59,10 +59,9 @@ const SignOutButton = styled.button`
 
 type UserPageProps = {
 	isAuth: boolean
-	error?: unknown
 }
 
-const UserPage = ({ isAuth, error }: UserPageProps) => {
+const UserPage = ({ isAuth }: UserPageProps) => {
 	const router = useRouter()
 
 	const [user] = useUser()
@@ -79,7 +78,6 @@ const UserPage = ({ isAuth, error }: UserPageProps) => {
 					</UserContainer>
 				</>
 			)}
-			{error}
 		</PageLayout>
 	)
 }
@@ -93,12 +91,10 @@ export const getServerSideProps: GetServerSideProps = async context => {
 			props: { isAuth: true }
 		}
 	} catch (error) {
-		console.error(error)
+		context.res.writeHead(302, { Location: '/signup' })
+		context.res.end()
 
-		// context.res.writeHead(302, { Location: '/signup' })
-		// context.res.end()
-
-		return { props: { isAuth: false, error } }
+		return { props: { isAuth: false } }
 	}
 }
 

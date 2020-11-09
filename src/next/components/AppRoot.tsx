@@ -4,8 +4,8 @@ import 'firebase/auth'
 import { setCookie } from 'nookies'
 import { ThemeProvider } from 'styled-components'
 
-import firebaseClient from '@src/firebaseClient'
-import { getUserData } from '@src/firebaseFirestore'
+import firebaseClient from '@firebases/firebaseClient'
+import { getUserData } from '@firebases/firebaseFirestore'
 import { useTheme } from '@states/theme-state'
 import { useIsGettingUser, useUser } from '@states/user-state'
 

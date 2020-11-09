@@ -15,11 +15,12 @@ module.exports = {
 		NEXT_PUBLIC_FIREBASE_MEASUREMENTID: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENTID,
 		FIREBASE_ADMIN_PROJECT_ID: process.env.FIREBASE_ADMIN_PROJECT_ID,
 		FIREBASE_ADMIN_PRIVATE_KEY: process.env.FIREBASE_ADMIN_PRIVATE_KEY,
-		FIREBASE_ADMIN_CLIENT_EMAIL: process.env.FIREBASE_ADMIN_CLIENT_EMAILD
+		FIREBASE_ADMIN_CLIENT_EMAIL: process.env.FIREBASE_ADMIN_CLIENT_EMAIL
 	},
 	cssLoaderOptions: {
 		modules: {
 			localIdentName: isProd ? '[hash:base64]' : '[path][name]__[local]--[hash:base64:5]'
 		}
-	}
+	},
+	distDir: '../../.next'
 }
