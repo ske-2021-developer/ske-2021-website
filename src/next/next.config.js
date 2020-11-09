@@ -21,6 +21,5 @@ module.exports = {
 		modules: {
 			localIdentName: isProd ? '[hash:base64]' : '[path][name]__[local]--[hash:base64:5]'
 		}
-	},
-	distDir: '../../.next'
+	}
 }

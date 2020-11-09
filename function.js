@@ -7,7 +7,7 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 const nextjsServer = next({
 	dev: isDev,
-	conf: { distDir: '.next' }
+	conf: { distDir: './src/next/.next' }
 })
 
 const nextjsHandle = nextjsServer.getRequestHandler()
